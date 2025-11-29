@@ -21,8 +21,8 @@ struct PersistenceController {
         
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
-                // In production, handle this error appropriately
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                // Log the error for debugging purposes
+                print("Core Data failed to load: \(error), \(error.userInfo)")
             }
         }
         
@@ -36,7 +36,8 @@ struct PersistenceController {
                 try context.save()
             } catch {
                 let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                // Log the error for debugging purposes
+                print("Core Data save error: \(nsError), \(nsError.userInfo)")
             }
         }
     }

@@ -26,13 +26,13 @@ struct CypherLogic {
     
     /// Encode a single character using Vernam cipher
     static func encodeLetter(cypherLetter: Character, originalLetter: Character) -> Character {
-        let newIndex = (getLetterIndex(cypherLetter) + getLetterIndex(originalLetter)) % 32
+        let newIndex = (getLetterIndex(cypherLetter) + getLetterIndex(originalLetter)) % alphabet.count
         return alphabet[newIndex]
     }
     
     /// Decode a single character using Vernam cipher
     static func decodeLetter(cypherLetter: Character, originalLetter: Character) -> Character {
-        let newIndex = abs(getLetterIndex(originalLetter) - getLetterIndex(cypherLetter))
+        let newIndex = (getLetterIndex(originalLetter) - getLetterIndex(cypherLetter) + alphabet.count) % alphabet.count
         return alphabet[newIndex]
     }
     
